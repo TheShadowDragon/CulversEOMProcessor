@@ -2,7 +2,7 @@
 #pip install webdriver_manager
 #pip install pdfplumber
 
-#python -m PyInstaller --onefile --add-data "blank_template.xlsx;." main.py
+#python -m PyInstaller --onefile main.py
 
 import time, os, openpyxl, sys, shutil, pdfplumber, re, getpass
 from pathlib import Path
@@ -277,7 +277,9 @@ def main():
     WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.ID, "Username")))
     login_url = driver.current_url
     driver.find_element(By.ID, "Username").send_keys(BRINK_USER)
+    time.sleep(1)
     driver.find_element(By.ID, "Password").send_keys(BRINK_PASS)
+    time.sleep(1)
     driver.find_element(By.ID, "Password").send_keys(Keys.RETURN)
 
     try:
